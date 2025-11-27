@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
     <style>
-        body { background:#fafafa; }
+        body { background:#817a7a; }
         .main-img {
-            width:100%;border-radius:14px;border:1px solid #ccc;background:white;padding:12px;
+            width:100%;border-radius:14px;border:1px solid #0b0a0a;background:black;padding:12px;
         }
         .thumbs img{
             width:70px;height:100px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer;
@@ -28,7 +28,7 @@
 
 <nav class="navbar bg-white shadow-sm">
   <div class="container">
-    <a class="navbar-brand fw-bold">OACASE.ma</a>
+    <a class="navbar-brand fw-bold">OADCASE.ma</a>
   </div>
 </nav>
 
@@ -40,9 +40,9 @@
       <img id="mainImg" src="IMAGE PER.jpg" class="main-img" alt="Aperçu coque">
 
       <div class="thumbs d-flex gap-2 justify-content-center mt-3">
-        <img src="IMAGE PER.jpg" class="active" onclick="switchImg(this)">
+        <img src="IMAGE PER.jpg" onclick="switchImg(this)">
         <img src="image2.jpg" onclick="switchImg(this)">
-           <img src="IMAGE PER 2.jpg" class="active" onclick="switchImg(this)">
+        <img src="IMAGE PER 2.jpg" onclick="switchImg(this)">
       </div>
 
       <img id="preview" class="preview-img" alt="Aperçu photo uploadée">
@@ -123,13 +123,10 @@ function sendWhatsApp(){
   "Offre : "+offer.value+"%0A"+
   "Photo : ajoutée ✓";
 
-  let num = "212656217331";
+  let num = "212600000000";
   window.open("https://wa.me/"+num+"?text="+message, "_blank");
 }
 </script>
 
 </body>
 </html>
-
-
-
