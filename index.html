@@ -35,7 +35,7 @@
         background:linear-gradient(90deg, #000, var(--dark-light));border-bottom:2px solid var(--gold);letter-spacing:1px;
     }
 
-    nav.navbar{
+    nav.navbar{ position:fixed; top:0; left:0; width:100%; z-index:9999; 
         background:var(--dark-light)!important;border-bottom:1px solid var(--gold);
     }
     .navbar-brand{ color:var(--gold)!important; font-size:1.6rem; text-transform:uppercase; }
@@ -127,7 +127,7 @@
     }
 </style>
 </head>
-<body>
+<body style="padding-top:80px;">
 
 <div class="header-bg bg-dark text-white text-center py-2">
     PROMO* économisez 100 dhs avec l'offre 2 coques 259 DHS et livraison gratuite !
@@ -136,10 +136,29 @@
 <nav class="navbar bg-white shadow-sm">
   <div class="container">
     <a class="navbar-brand logo-gold fade-soft">
-    👑 OADCASE
+    👑 OAACASE
 </a>
   </div>
 </nav>
+
+<!-- SLIDER LUXE AJOUTÉ -->
+<div id="sliderLuxe" class="carousel slide mb-4" data-bs-ride="carousel">
+  <div class="carousel-inner rounded-4 shadow-gold">
+      <div class="carousel-item active">
+          <img src="WhatsApp Image 2025-12-03 à 23.18.23_4797eb2a.jpg" class="d-block w-100" alt="slider1">
+      </div>
+      <div class="carousel-item">
+          <img style="height:380px;object-fit:cover;" src="IMAGE PER.jpg" class="d-block w-100" alt="slider2">
+      </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#sliderLuxe" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#sliderLuxe" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
 
 <div class="container my-5">
   <div class="row g-4">
@@ -149,8 +168,10 @@
 
         <!-- SLIDER LV MIXÉ -->
         <div class="luxury-box mb-4">
-            <div id="luxuryCarousel" class="carousel slide">
-                <div class="carousel-inner">
+            <div id="luxuryCarousel" style="max-width:360px;margin:auto;border:3px solid var(--gold);border-radius:18px;overflow:hidden;box-shadow:0 0 25px rgba(212,175,55,0.35); class="carousel slide">
+                <div class="carousel-inner position-relative">
+
+
                     <div class="carousel-item active">
                         <img src="IMAGE PER.jpg" class="d-block w-100" alt="1">
                     </div>
@@ -248,7 +269,7 @@ function sendWhatsApp(){
 </script>
 
 <footer class="fade-soft">
-    © 2025 OADCASE.ma — Collection Luxe Or. Qualité Premium Garantie.
+    © 2025 OAACASE.ma — Collection Luxe Or. Qualité Premium Garantie.
 </footer>
 
     <!-- CTA Luxe -->
@@ -261,6 +282,12 @@ function sendWhatsApp(){
         </a>
     </div>
 
+<script>
+// Effet lumière douce sur le slider
+let slider = document.querySelector('#luxuryCarousel');
+setInterval(()=>{
+    slider.style.boxShadow = "0 0 30px rgba(212,175,55," + (0.3 + Math.random()*0.6) + ")";
+},280);
+</script>
 </body>
 </html>
-
