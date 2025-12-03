@@ -8,17 +8,124 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
     <style>
-        body { background:#817a7a; }
-        .main-img {
-            width:100%;border-radius:14px;border:1px solid #0b0a0a;background:black;padding:12px;
-        }
-        .thumbs img{
-            width:70px;height:100px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer;
-        }
-        .thumbs img.active{ border-color:#000; }
-        .product-info h4{color:red;}
-        .preview-img{display:none;max-height:350px;object-fit:contain;border:1px solid #bbb;border-radius:12px;margin-top:10px;width:100%;}
-    </style>
+    body { background:#0d0c0c; font-family:'Poppins', sans-serif; }
+
+    /* Palette luxe */
+    :root {
+        --gold:#d4af37;
+        --gold-soft:#c9a334;
+        --dark:#0d0c0c;
+        --dark-light:#1a1818;
+    }
+
+    /* Image principale */
+    .main-img {
+        width:100%;border-radius:18px;border:2px solid var(--gold);background:#000;padding:14px;box-shadow:0 0 18px rgba(212,175,55,0.35);
+    }
+
+    .thumbs img{
+        width:75px;height:105px;object-fit:cover;border-radius:10px;border:2px solid transparent;cursor:pointer;transition:0.2s;
+    }
+    .thumbs img.active{ border-color:var(--gold); box-shadow:0 0 10px rgba(212,175,55,0.4);}    
+    .thumbs img:hover{ transform:scale(1.05); }
+
+    .product-info h4{color:var(--gold);}
+
+    .header-bg{
+        background:linear-gradient(90deg, #000, var(--dark-light));border-bottom:2px solid var(--gold);letter-spacing:1px;
+    }
+
+    nav.navbar{
+        background:var(--dark-light)!important;border-bottom:1px solid var(--gold);
+    }
+    .navbar-brand{ color:var(--gold)!important; font-size:1.6rem; text-transform:uppercase; }
+
+    .preview-img{
+        display:none;max-height:360px;object-fit:contain;border:2px solid var(--gold-soft);border-radius:14px;margin-top:12px;width:100%;
+    }
+
+    .btn-success{
+        background:var(--gold)!important;color:#000!important;font-weight:700;border:none;border-radius:12px;box-shadow:0 0 10px rgba(212,175,55,0.4);
+    }
+    .btn-success:hover{
+        background:var(--gold-soft)!important;box-shadow:0 0 15px rgba(212,175,55,0.7);
+    }
+
+    .product-info p, .product-info label, li{
+        color:#e0dede;
+    }
+
+    .container{
+        background:var(--dark-light);padding:32px;border-radius:18px;box-shadow:0 0 25px rgba(212,175,55,0.15);
+    }
+    /* Bouton or 3D */
+    .btn-gold-3d{
+        background:linear-gradient(180deg, #f5d670, #d4af37 60%, #b38a25);
+        color:#000;font-weight:800;border:none;border-radius:14px;
+        box-shadow:0 6px 0 #8c6a1a, 0 0 18px rgba(212,175,55,0.55);
+        transition:0.15s;
+    }
+    .btn-gold-3d:active{
+        transform:translateY(4px);
+        box-shadow:0 2px 0 #8c6a1a;
+    }
+
+    /* Animation douce apparition */
+    .fade-soft{
+        animation:fadeSoft 1.4s ease forwards;
+        opacity:0;
+    }
+    @keyframes fadeSoft{
+        from{ opacity:0; transform:translateY(20px); }
+        to{ opacity:1; transform:translateY(0); }
+    }
+
+    /* Footer luxe */
+    footer{
+        background:var(--dark-light);
+        border-top:2px solid var(--gold);
+        padding:35px 0;
+        margin-top:60px;
+        text-align:center;
+        color:var(--gold);
+        font-weight:600;
+        letter-spacing:1px;
+        box-shadow:0 -5px 25px rgba(212,175,55,0.18);
+    }
+    /* Effet Shine sur le logo */
+    .logo-gold{
+        position:relative;
+        display:inline-block;
+        background:linear-gradient(90deg,#f7e9a8,#d4af37,#b1861b);
+        -webkit-background-clip:text;
+        color:transparent;
+        font-size:2rem;
+        font-weight:800;
+        letter-spacing:2px;
+        overflow:hidden;
+    }
+    .logo-gold::after{
+        content:"";
+        position:absolute;
+        top:0;left:-120%;
+        width:120%;height:100%;
+        background:linear-gradient(120deg,transparent,rgba(255,255,255,0.6),transparent);
+        transform:skewX(-25deg);
+        animation:shine 3.5s infinite;
+    }
+    @keyframes shine{
+        0%{ left:-120%; }
+        60%{ left:120%; }
+        100%{ left:120%; }
+    }
+
+    /* Icône couronne or */
+    .gold-icon{
+        color:var(--gold);
+        font-size:1.6rem;
+        margin-right:8px;
+    }
+</style>
 </head>
 <body>
 
@@ -28,27 +135,49 @@
 
 <nav class="navbar bg-white shadow-sm">
   <div class="container">
-    <a class="navbar-brand fw-bold">OADCASE.ma</a>
+    <a class="navbar-brand logo-gold fade-soft">
+    👑 OADCASE
+</a>
   </div>
 </nav>
 
 <div class="container my-5">
   <div class="row g-4">
 
-    <!-- Galerie images mixée -->
+    <!-- COLONNE GAUCHE -->
     <div class="col-lg-6 text-center">
-      <img id="mainImg" src="IMAGE PER.jpg" class="main-img" alt="Aperçu coque">
 
-      <div class="thumbs d-flex gap-2 justify-content-center mt-3">
-        <img src="IMAGE PER.jpg" onclick="switchImg(this)">
-        <img src="image2.jpg" onclick="switchImg(this)">
-        <img src="IMAGE PER 2.jpg" onclick="switchImg(this)">
-      </div>
+        <!-- SLIDER LV MIXÉ -->
+        <div class="luxury-box mb-4">
+            <div id="luxuryCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="IMAGE PER.jpg" class="d-block w-100" alt="1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="image2.jpg" class="d-block w-100" alt="2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="IMAGE PER 2.jpg" class="d-block w-100" alt="3">
+                    </div>
+                </div>
 
-      <img id="preview" class="preview-img" alt="Aperçu photo uploadée">
+                <button class="carousel-control-prev" type="button" data-bs-target="#luxuryCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                <button class="carousel-control-next" type="button" data-bs-target="#luxuryCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+            </div>
+        </div>
+
+        <!-- Miniatures -->
+        <div class="thumbs d-flex gap-2 justify-content-center mt-3">
+            <img src="IMAGE PER.jpg" data-slide="0" onclick="goToSlide(this)" class="active">
+            <img src="image2.jpg" data-slide="1" onclick="goToSlide(this)">
+            <img src="IMAGE PER 2.jpg" data-slide="2" onclick="goToSlide(this)">
+        </div>
+
+        <img id="preview" class="preview-img" alt="preview">
     </div>
 
-    <!-- Infos produit + WhatsApp form -->
+    <!-- COLONNE DROITE ORIGINALE (FORMULAIRE) -->
     <div class="col-lg-6 product-info">
       <h3>Coque de téléphone personnalisée</h3>
       <h4 class="mt-2">149 DH <span class="text-muted text-decoration-line-through">199 DH</span></h4>
@@ -80,53 +209,58 @@
         <input class="form-control mb-3" id="client_address" type="text" placeholder="Adresse complète">
         <input class="form-control mb-3" id="client_model" type="text" placeholder="Modèle du téléphone">
 
-        <button type="button" onclick="sendWhatsApp()" class="btn btn-success w-100 py-2 fs-5">Commander via WhatsApp</button>
+        <button type="button" onclick="sendWhatsApp()" class="btn-gold-3d w-100 py-2 fs-4 fade-soft">Commander via WhatsApp</button>
 
         <hr>
-        <h5 class="text-center text-danger">Notre équipe vous contactera par WhatsApp dans quelques instants pour confirmer votre commande.</h5>
-        <ul>
-            <li type="square"><i>Description du produit : coque rigide avec votre image imprimée sur la face avant, bords transparents.</i></li><br>
-            <li type="square"><i>Ajoutez du textes, vos photos, images et motifs en toute simplicité puis validez votre création. </i></li><br>
-            <li type="square"><i>Petit conseil : vous personnalisez pour votre propre téléphone et c'est super ! pensez à cette idée cadeau qui pourra faire plaisir comme pour vos plus belles occasions : anniversaires, événements...</i></li><br>
-        </ul>
+        <h5 class="text-center text-danger">Notre équipe vous contactera par WhatsApp dans quelques instants.</h5>
       </form>
     </div>
   </div>
 </div>
 
 <script>
-function switchImg(el){
-  document.querySelectorAll('.thumbs img').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('mainImg').src = el.src;
+function goToSlide(el) {
+    let index = el.getAttribute("data-slide");
+    document.querySelectorAll('.thumbs img').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    let carousel = bootstrap.Carousel.getOrCreateInstance(document.querySelector('#luxuryCarousel'));
+    carousel.to(index);
 }
 
-// Preview photo
- document.getElementById("photo").addEventListener("change", function(e){
+document.getElementById("photo").addEventListener("change", function(e){
    const prev = document.getElementById("preview");
    prev.src = URL.createObjectURL(e.target.files[0]);
    prev.style.display = "block";
 });
 
-// WhatsApp
 function sendWhatsApp(){
   let name = document.getElementById("client_name").value;
   let phone = document.getElementById("client_phone").value;
+  let address = document.getElementById("client_address").value;
+  let model = document.getElementById("client_model").value;
   let offer = document.querySelector('input[name="offer"]:checked');
+  if(!name || !phone || !address || !model || !offer){ alert("Veuillez remplir toutes les informations."); return; }
 
-  if(!name || !phone || !offer){ alert("Veuillez remplir toutes les informations."); return; }
-
-  let message =
-  "Nouvelle commande :%0A"+
-  "Nom : "+name+"%0A"+
-  "Téléphone : "+phone+"%0A"+
-  "Offre : "+offer.value+"%0A"+
-  "Photo : ajoutée ✓";
-
+  let message = `Nouvelle commande :\nNom : ${name}\nTéléphone : ${phone}\nAdresse : ${address}\nModèle : ${model}\nOffre : ${offer.value}`;
   let num = "212600000000";
-  window.open("https://wa.me/"+num+"?text="+message, "_blank");
+  window.open("https://wa.me/"+num+"?text="+encodeURIComponent(message), "_blank");
 }
 </script>
 
+<footer class="fade-soft">
+    © 2025 OADCASE.ma — Collection Luxe Or. Qualité Premium Garantie.
+</footer>
+
+    <!-- CTA Luxe -->
+    <div class="text-center my-5">
+        <a href="#" class="btn btn-lg btn-warning fw-bold px-4 py-2" style="border-radius:12px; box-shadow:0 0 15px rgba(255,215,0,0.6);">
+            Commander Maintenant – Édition Prestige
+        </a>
+        <a href="#" class="btn btn-lg btn-warning fw-bold px-4 py-2 ms-3" style="border-radius:12px; box-shadow:0 0 15px rgba(255,215,0,0.6);">
+            Personnaliser Ma Coque
+        </a>
+    </div>
+
 </body>
 </html>
+
